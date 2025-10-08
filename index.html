@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Pulse v2 - Real Solana Token Monitor</title>
+    <title>THE PULSE v2 - REAL SOLANA TOKENS</title>
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tomorrow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
     <style>
         * {
             margin: 0;
@@ -16,9 +19,9 @@
         }
 
         body {
-            font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: #0F1113;
-            color: #F7F7F7;
+  font-family: "Tomorrow", sans-serif;
+            background: linear-gradient(135deg, #0A0A0F 0%, #0F0F1A 50%, #0A0A0F 100%);
+            color: #FFFFFF;
             line-height: 1.4;
             overflow: hidden;
             -webkit-font-smoothing: antialiased;
@@ -26,48 +29,134 @@
         }
 
         :root {
-            --bg-primary: #0F1113;
-            --bg-secondary: #0B0B0C;
-            --bg-surface: #1A1D21;
-            --text-primary: #F7F7F7;
-            --text-secondary: #8B8E92;
-            --text-muted: #5D6065;
-            --border-color: #2A2D32;
-            --accent-teal: #00FFAA;
-            --accent-purple: #9945FF;
-            --positive: #00FFAA;
-            --negative: #FF4473;
-            --warning: #FFB443;
-        }
+    --bg-primary: #ffffff;
+    --bg-secondary: #d9d9ff;
+    --bg-surface: #3a3636;
+    --bg-card: rgb(39 1 2 / 70%);
+    --bg-card-hover: rgb(9 0 0 / 90%);
+    --text-primary: #ffffff;
+    --text-secondary: #ffffff;
+    --text-muted: #792043;
+    --border-color: rgb(0 0 0 / 50%);
+    --accent-teal: #7a0000;
+    --accent-purple: #8c8c8c;
+    --accent-blue: #37031d;
+    --positive: #00d4aa;
+    --negative: #FF4473;
+    --warning: #FFB443;
+    --glow: 0 0 20px rgb(10 6 27 / 30%);
+    --glow-teal: 0 0 20px rgb(32 220 183 / 30%);
+    --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    --glass-effect: rgba(20, 20, 30, 0.5);
+}
 
-        /* App Layout */
+
         .app {
             height: 100vh;
             display: flex;
             flex-direction: column;
             background: var(--bg-primary);
+            position: relative;
+            overflow: hidden;
         }
 
-        /* Header Styles */
+        /* Background effects */
+        .bg-effects {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .bg-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(123, 97, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(123, 97, 255, 0.05) 1px, transparent 1px);
+            background-size: 60px 60px;
+            opacity: 0.4;
+        }
+
+        .bg-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.2;
+        }
+
+        .glow-1 {
+            background: var(--accent-purple);
+            top: -300px;
+            right: -200px;
+        }
+
+        .glow-2 {
+            background: var(--accent-teal);
+            bottom: -300px;
+            left: -200px;
+        }
+
         .header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 1rem 1.5rem;
-            background: var(--bg-secondary);
+            padding: 1.2rem 2.5rem;
+            background: rgb(255 255 255 / 70%);
+            backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border-color);
-            min-height: 64px;
+            min-height: 80px;
+            position: relative;
+            z-index: 10;
         }
 
         .header-left {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 2rem;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .logo {
+            width: 158px;
+            height: 158px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.4rem;
+            box-shadow: var(--glow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo::after {
+            display: flex;
+            width: max-content;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
         }
 
         .app-title {
-            font-size: 1.25rem;
-            font-weight: 700;
+            font-size: 1.8rem;
+            font-weight: 800;
             letter-spacing: -0.02em;
             background: linear-gradient(135deg, var(--accent-teal), var(--accent-purple));
             -webkit-background-clip: text;
@@ -75,453 +164,285 @@
             background-clip: text;
         }
 
+        .status-container {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.6rem 1.2rem;
+            background: rgba(26, 26, 36, 0.7);
+            border-radius: 14px;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+        }
+
         .status-dot {
-            width: 8px;
-            height: 8px;
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
         }
 
-        .status-dot.connected { background: var(--positive); }
-        .status-dot.degraded { background: var(--warning); }
-        .status-dot.polling { background: var(--negative); }
-        .status-dot.disconnected { background: var(--text-muted); }
+        .status-dot.loading { background: var(--accent-purple); animation: pulse 1.5s infinite; }
+        .status-dot.live { background: var(--accent-teal); box-shadow: 0 0 12px var(--accent-teal); }
+        .status-dot.error { background: var(--negative); }
 
-        .header-center {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            flex: 1;
-            max-width: 400px;
-            margin: 0 2rem;
+        @keyframes pulse {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.1); }
+            100% { opacity: 1; transform: scale(1); }
         }
 
-        .search-input, .filter-select {
-            padding: 0.5rem 1rem;
-            background: var(--bg-surface);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            color: var(--text-primary);
-            font-size: 0.875rem;
-            font-family: inherit;
-        }
-
-        .search-input::placeholder {
-            color: var(--text-muted);
+        .api-status {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-secondary);
         }
 
         .header-right {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 1.5rem;
         }
 
-        .filter-toggle {
+        .social-link {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            font-size: 0.875rem;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: rgba(26, 26, 36, 0.7);
             color: var(--text-secondary);
-            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
         }
 
-        /* Main Content */
+        .social-link:hover {
+            color: var(--accent-teal);
+            border-color: var(--accent-teal);
+            box-shadow: var(--glow-teal);
+            transform: translateY(-2px);
+        }
+
         .main-content {
             display: flex;
             flex: 1;
             overflow: hidden;
+            padding: 1rem;
+            gap: 1rem;
         }
 
-        /* Pairs Feed */
         .pairs-feed {
-            width: 400px;
-            border-right: 1px solid var(--border-color);
+            width: 500px;
+            border-radius: 20px;
             display: flex;
             flex-direction: column;
-            background: var(--bg-secondary);
+            background: rgb(255 255 255);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
         }
 
         .feed-header {
-            padding: 1rem 1.5rem;
+            padding: 1.5rem 2rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            font-size: 0.875rem;
+            font-size: 0.9rem;
             font-weight: 600;
             color: var(--text-secondary);
             border-bottom: 1px solid var(--border-color);
+            background: rgb(37 0 0);
         }
 
         .count-badge {
-            background: var(--bg-surface);
-            padding: 0.25rem 0.5rem;
-            border-radius: 12px;
-            font-size: 0.75rem;
-            color: var(--text-primary);
+            background: linear-gradient(135deg, var(--accent-teal), var(--accent-purple));
+            padding: 0.4rem 1rem;
+            border-radius: 14px;
+            font-size: 0.8rem;
+            color: white;
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(123, 97, 255, 0.3);
         }
 
         .pairs-list {
             flex: 1;
             overflow-y: auto;
+            padding: 1rem;
         }
 
         .pairs-list::-webkit-scrollbar {
-            width: 4px;
+            width: 6px;
         }
 
         .pairs-list::-webkit-scrollbar-track {
-            background: transparent;
+            background: rgba(26, 26, 36, 0.5);
+            border-radius: 3px;
         }
 
         .pairs-list::-webkit-scrollbar-thumb {
-            background: var(--border-color);
-            border-radius: 2px;
+            background: var(--accent-purple);
+            border-radius: 3px;
         }
 
-        /* Pair Card */
         .pair-card {
-            padding: 1rem 1.5rem;
-            border-bottom: 1px solid var(--border-color);
+            padding: 1.5rem;
+            border-radius: 16px;
             cursor: pointer;
-            transition: all 0.2s ease;
-            background: var(--bg-secondary);
+            transition: all 0.3s ease;
+            background: var(--bg-card);
+            margin-bottom: 0.75rem;
+            border: 1px solid transparent;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .pair-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-purple), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .pair-card:hover {
-            background: var(--bg-surface);
+            background: var(--bg-card-hover);
+            border-color: var(--border-color);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .pair-card:hover::before {
+            opacity: 1;
         }
 
         .pair-card.selected {
-            background: var(--bg-surface);
-            border-right: 2px solid;
-            border-image: linear-gradient(135deg, var(--accent-teal), var(--accent-purple)) 1;
+            background: var(--bg-card-hover);
+            border: 1px solid var(--accent-purple);
+            box-shadow: var(--glow);
         }
 
-        .pair-card.new {
-            animation: pulse-glow 2s ease-in-out;
+        .pair-card.new-pair {
+            animation: slideIn 0.6s ease-out;
+            border-left: 4px solid var(--accent-teal);
         }
 
-        @keyframes pulse-glow {
-            0% { background: var(--bg-secondary); }
-            50% { background: rgba(0, 255, 170, 0.05); }
-            100% { background: var(--bg-secondary); }
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         .pair-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 0.75rem;
+            margin-bottom: 1rem;
         }
 
         .pair-name {
             display: flex;
             align-items: center;
-            gap: 0.25rem;
-            font-weight: 600;
-        }
-
-        .token-symbol {
-            color: var(--text-primary);
-        }
-
-        .pair-separator {
-            color: var(--text-muted);
-        }
-
-        .quote-symbol {
-            color: var(--text-secondary);
-        }
-
-        .verified-badge {
-            background: var(--positive);
-            color: var(--bg-primary);
-            padding: 0.125rem 0.375rem;
-            border-radius: 4px;
-            font-size: 0.625rem;
-            font-weight: 700;
-        }
-
-        .verified-badge.large {
-            padding: 0.25rem 0.5rem;
-            font-size: 0.75rem;
-        }
-
-        .pair-meta {
-            display: flex;
-            align-items: center;
             gap: 0.5rem;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .new-badge {
+            background: linear-gradient(135deg, var(--accent-teal), var(--accent-purple));
+            color: white;
+            padding: 0.3rem 0.7rem;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            box-shadow: 0 0 12px rgba(0, 212, 170, 0.5);
         }
 
         .time-ago {
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             color: var(--text-muted);
-        }
-
-        .watch-btn {
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            cursor: pointer;
-            font-size: 0.875rem;
-            padding: 0.25rem;
-            transition: color 0.2s ease;
-            font-family: inherit;
-        }
-
-        .watch-btn:hover {
-            color: var(--warning);
-        }
-
-        .watch-btn.watched {
-            color: var(--warning);
-        }
-
-        .watch-btn.large {
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            font-size: 0.875rem;
+            background: rgba(42, 42, 58, 0.5);
+            padding: 0.3rem 0.7rem;
+            border-radius: 8px;
         }
 
         .pair-stats {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 0.5rem;
-            margin-bottom: 0.75rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 1rem;
         }
 
         .stat {
             display: flex;
             flex-direction: column;
-            gap: 0.125rem;
+            gap: 0.3rem;
         }
 
         .stat label {
-            font-size: 0.625rem;
+            font-size: 0.75rem;
             color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
 
         .stat span {
-            font-size: 0.875rem;
+            font-size: 1rem;
             font-weight: 600;
         }
 
-        .positive {
-            color: var(--positive);
-        }
+        .positive { color: var(--positive); }
+        .negative { color: var(--negative); }
 
-        .negative {
-            color: var(--negative);
-        }
-
-        .trust-score {
-            color: var(--accent-purple);
-        }
-
-        .pair-footer {
+        .pair-meta {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            font-size: 0.8rem;
         }
 
         .source-tag {
-            font-size: 0.75rem;
             color: var(--text-muted);
-            background: var(--bg-surface);
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
+            background: rgba(42, 42, 58, 0.5);
+            padding: 0.3rem 0.7rem;
+            border-radius: 8px;
         }
 
-        .price {
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        /* Pair Detail */
         .pair-detail {
             flex: 1;
             padding: 2rem;
             overflow-y: auto;
-            background: var(--bg-primary);
-        }
-
-        .pair-detail.empty {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .empty-state {
-            text-align: center;
-            color: var(--text-muted);
-            max-width: 300px;
-        }
-
-        .empty-state h3 {
-            margin-bottom: 0.5rem;
-            color: var(--text-secondary);
-        }
-
-        .detail-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 2rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .detail-title {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .detail-title h2 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-        }
-
-        .detail-content {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .detail-section {
-            background: var(--bg-surface);
+            background: rgb(255 255 255);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
             border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 1.5rem;
+            box-shadow: var(--card-shadow);
         }
 
-        .section-title {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--text-secondary);
+        .pair-detail::-webkit-scrollbar {
+            width: 6px;
         }
 
-        .metrics-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
+        .pair-detail::-webkit-scrollbar-track {
+            background: rgba(26, 26, 36, 0.5);
+            border-radius: 3px;
         }
 
-        .metric-item {
-            display: flex;
-            flex-direction: column;
-            gap: 0.25rem;
-        }
-
-        .metric-label {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .metric-value {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        .performance-stats,
-        .volume-stats {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .performance-item,
-        .volume-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .performance-item:last-child,
-        .volume-item:last-child {
-            border-bottom: none;
-        }
-
-        .action-buttons {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 0.75rem;
-        }
-
-        .action-btn {
-            padding: 0.75rem 1rem;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            color: var(--text-primary);
-            cursor: pointer;
-            transition: all 0.2s ease;
-            font-size: 0.875rem;
-            font-family: inherit;
-        }
-
-        .action-btn:hover {
-            background: var(--bg-primary);
-            border-color: var(--accent-teal);
-        }
-
-        .action-btn.report:hover {
-            border-color: var(--negative);
-        }
-
-        .address-box {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1rem;
-            background: var(--bg-secondary);
-            border-radius: 6px;
-            border: 1px solid var(--border-color);
-        }
-
-        .address-box code {
-            flex: 1;
-            font-family: 'Space Grotesk', monospace;
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-            word-break: break-all;
-        }
-
-        .copy-btn {
-            padding: 0.5rem 1rem;
-            background: var(--bg-primary);
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            color: var(--text-primary);
-            cursor: pointer;
-            font-size: 0.75rem;
-            font-family: inherit;
-        }
-
-        .copy-btn:hover {
-            background: var(--bg-surface);
-        }
-
-        /* Footer */
-        .footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.75rem 1.5rem;
-            background: var(--bg-secondary);
-            border-top: 1px solid var(--border-color);
-            font-size: 0.75rem;
-            color: var(--text-muted);
+        .pair-detail::-webkit-scrollbar-thumb {
+            background: var(--accent-teal);
+            border-radius: 3px;
         }
 
         .loading {
@@ -530,40 +451,204 @@
             justify-content: center;
             padding: 2rem;
             color: var(--text-muted);
-        }
-
-        .error {
-            color: var(--negative);
-            padding: 1rem;
+            flex-direction: column;
+            gap: 1rem;
             text-align: center;
-            background: var(--bg-surface);
-            border-radius: 6px;
-            margin: 1rem;
+            height: 100%;
         }
 
-        /* Responsive */
-        @media (max-width: 1024px) {
+        .scanner-animation {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--accent-purple);
+            border-top: 3px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 2.5rem;
+            background: rgb(255 255 255 / 70%);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid var(--border-color);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .last-update {
+            color: var(--accent-teal);
+            font-weight: 600;
+        }
+
+        /* Detail View Enhancements */
+        .detail-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .detail-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--accent-teal), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .price-container {
+            text-align: right;
+        }
+
+        .current-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .price-change {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            padding: 1.8rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-card:hover {
+            border-color: var(--accent-purple);
+            box-shadow: var(--glow);
+            transform: translateY(-4px);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .actions-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .action-btn {
+            padding: 1rem 1.2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            color: var(--text-primary);
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.7rem;
+            font-weight: 600;
+        }
+
+        .action-btn:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--accent-teal);
+            box-shadow: var(--glow-teal);
+            transform: translateY(-2px);
+        }
+
+        .trust-score {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: conic-gradient(var(--accent-teal) 0%, var(--accent-purple) 100%);
+            position: relative;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 0 20px rgba(123, 97, 255, 0.3);
+        }
+
+        .trust-score::before {
+            content: '';
+            position: absolute;
+            width: 110px;
+            height: 110px;
+            background: var(--bg-surface);
+            border-radius: 50%;
+        }
+
+        .trust-score-value {
+            position: relative;
+            z-index: 1;
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-teal), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1200px) {
             .pairs-feed {
-                width: 350px;
+                width: 450px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
             }
             
-            .metrics-grid {
+            .pairs-feed {
+                width: 100%;
+                height: 40%;
+            }
+            
+            .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
             
-            .action-buttons {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Reduced Motion */
-        @media (prefers-reduced-motion: reduce) {
-            .pair-card.new {
-                animation: none;
+            .header {
+                padding: 1rem 1.5rem;
             }
             
-            .pair-card {
-                transition: none;
+            .footer {
+                padding: 1rem 1.5rem;
             }
         }
     </style>
@@ -574,187 +659,221 @@
     <script type="text/babel">
         const { useState, useEffect, useRef, useCallback, useMemo } = React;
 
-        // Real Solana Data Service
+        // Background Effects Component
+        const BackgroundEffects = () => {
+            return React.createElement('div', { className: 'bg-effects' },
+                React.createElement('div', { className: 'bg-grid' }),
+                React.createElement('div', { className: 'bg-glow glow-1' }),
+                React.createElement('div', { className: 'bg-glow glow-2' })
+            );
+        };
+
+        // REAL DEXSCREENER API SERVICE
         const createRealDataService = () => {
-            // Birdeye API for real token data
-            const BIRDEYE_API = 'https://public-api.birdeye.so/public';
-            const HELIUS_API = 'https://mainnet.helius-rpc.com/?api-key=';
+            const BASE_URL = 'https://api.dexscreener.com';
+            let seenPairs = new Set();
 
-            // Common Solana tokens for reference
-            const COMMON_TOKENS = {
-                'USDC': 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v',
-                'SOL': 'So11111111111111111111111111111111111111112',
-                'BONK': 'DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263',
-                'JUP': 'JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN',
-                'RAY': '4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R'
-            };
-
-            let wsConnection = null;
-            let reconnectTimeout = null;
-
-            const connectWebSocket = (onMessage, onStatusChange) => {
+            // Get trending tokens with boosts (most active)
+            const fetchTrendingTokens = async () => {
                 try {
-                    // Using Birdeye WebSocket for real-time data (free tier)
-                    wsConnection = new WebSocket('wss://public-api.birdeye.so/socket');
+                    console.log('🔄 Fetching trending tokens from DexScreener...');
                     
-                    wsConnection.onopen = () => {
-                        onStatusChange('connected');
-                        console.log('WebSocket connected to Birdeye');
-                    };
-
-                    wsConnection.onmessage = (event) => {
-                        try {
-                            const data = JSON.parse(event.data);
-                            if (data.type === 'price_update') {
-                                onMessage(parsePriceUpdate(data));
-                            }
-                        } catch (e) {
-                            console.warn('Failed to parse WebSocket message:', e);
-                        }
-                    };
-
-                    wsConnection.onclose = () => {
-                        onStatusChange('disconnected');
-                        // Attempt reconnect after 5 seconds
-                        reconnectTimeout = setTimeout(() => {
-                            connectWebSocket(onMessage, onStatusChange);
-                        }, 5000);
-                    };
-
-                    wsConnection.onerror = (error) => {
-                        console.error('WebSocket error:', error);
-                        onStatusChange('degraded');
-                    };
-
-                } catch (error) {
-                    console.error('WebSocket connection failed:', error);
-                    onStatusChange('polling');
-                    // Fallback to polling
-                    startPolling(onMessage);
-                }
-            };
-
-            const startPolling = (onMessage) => {
-                const poll = async () => {
-                    try {
-                        const newPairs = await fetchRecentPairs();
-                        newPairs.forEach(pair => onMessage(pair));
-                    } catch (error) {
-                        console.error('Polling error:', error);
-                    }
-                };
-
-                // Poll every 10 seconds
-                poll();
-                return setInterval(poll, 10000);
-            };
-
-            const parsePriceUpdate = (data) => {
-                return {
-                    id: `pair_${data.address}`,
-                    name: `${data.symbol || 'UNKNOWN'}/USDC`,
-                    tokenAddress: data.address,
-                    baseToken: data.symbol || 'UNKNOWN',
-                    quoteToken: 'USDC',
-                    liquidity: data.liquidity || Math.random() * 1000000,
-                    initialPrice: data.price || Math.random() * 0.1,
-                    priceChange1m: data.priceChange24h || (Math.random() - 0.5) * 20,
-                    priceChange5m: data.priceChange5m || (Math.random() - 0.5) * 40,
-                    volume1m: data.volume24h || Math.random() * 50000,
-                    volume5m: data.volume5m || Math.random() * 200000,
-                    source: 'Raydium', // Most new tokens launch on Raydium
-                    trustScore: calculateTrustScore(data),
-                    createdAt: new Date(),
-                    holders: data.holders || Math.floor(Math.random() * 1000),
-                    marketCap: data.marketCap || Math.random() * 5000000,
-                    isVerified: data.is_verified || Math.random() > 0.7
-                };
-            };
-
-            const calculateTrustScore = (data) => {
-                let score = 50;
-                if (data.is_verified) score += 30;
-                if (data.liquidity > 10000) score += 10;
-                if (data.holders > 100) score += 10;
-                return Math.min(100, score);
-            };
-
-            const fetchRecentPairs = async () => {
-                try {
-                    // Using Birdeye API to get trending/new tokens
-                    const response = await fetch(`${BIRDEYE_API}/tokenlist?sort_by=v24h_change_percent&sort_type=desc&offset=0&limit=20`);
+                    // Get tokens with active boosts (trending)
+                    const response = await fetch(`${BASE_URL}/token-boosts/top/v1`);
+                    
+                    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                    
                     const data = await response.json();
+                    console.log('✅ Got trending tokens:', data);
                     
-                    if (data.data && data.data.items) {
-                        return data.data.items.map(token => ({
-                            id: `pair_${token.address}`,
-                            name: `${token.symbol}/USDC`,
-                            tokenAddress: token.address,
-                            baseToken: token.symbol,
-                            quoteToken: 'USDC',
-                            liquidity: token.liquidity || 0,
-                            initialPrice: token.price || 0,
-                            priceChange1m: token.v24hChangePercent || 0,
-                            priceChange5m: token.v5mChangePercent || 0,
-                            volume1m: token.v24hVolume || 0,
-                            volume5m: token.v5mVolume || 0,
-                            source: 'Various',
-                            trustScore: calculateTrustScore(token),
-                            createdAt: new Date(),
-                            holders: token.holders || 0,
-                            marketCap: token.marketCap || 0,
-                            isVerified: token.is_verified || false
-                        }));
+                    if (Array.isArray(data)) {
+                        // Get pair data for each trending token
+                        const pairs = [];
+                        for (const token of data.slice(0, 15)) {
+                            try {
+                                const pairData = await fetchTokenPairs(token.tokenAddress);
+                                if (pairData && pairData.length > 0) {
+                                    const parsedPair = parseRealPair(pairData[0]);
+                                    if (!seenPairs.has(parsedPair.id)) {
+                                        seenPairs.add(parsedPair.id);
+                                        pairs.push(parsedPair);
+                                    }
+                                }
+                            } catch (error) {
+                                console.log('Skipping token:', token.tokenAddress, error);
+                            }
+                        }
+                        return pairs;
                     }
                 } catch (error) {
-                    console.error('Failed to fetch recent pairs:', error);
+                    console.error('Trending tokens API failed:', error);
+                    throw error;
                 }
-
-                // Fallback to mock data if API fails
-                return generateFallbackPairs();
+                return [];
             };
 
-            const generateFallbackPairs = () => {
-                const trendingTokens = [
-                    { symbol: 'JUP', name: 'Jupiter', verified: true },
-                    { symbol: 'JTO', name: 'Jito', verified: true },
-                    { symbol: 'WEN', name: 'Wen', verified: false },
-                    { symbol: 'MOBILE', name: 'Helium Mobile', verified: true },
-                    { symbol: 'HNT', name: 'Helium', verified: true }
-                ];
-
-                return trendingTokens.map(token => ({
-                    id: `pair_${token.symbol}_${Date.now()}`,
-                    name: `${token.symbol}/USDC`,
-                    tokenAddress: `real_${token.symbol}_address_${Math.random().toString(36).substr(2, 9)}`,
-                    baseToken: token.symbol,
-                    quoteToken: 'USDC',
-                    liquidity: Math.random() * 500000 + 10000,
-                    initialPrice: Math.random() * 2 + 0.01,
-                    priceChange1m: (Math.random() - 0.3) * 50,
-                    priceChange5m: (Math.random() - 0.4) * 80,
-                    volume1m: Math.random() * 100000 + 5000,
-                    volume5m: Math.random() * 500000 + 10000,
-                    source: 'Raydium',
-                    trustScore: token.verified ? 85 : 45,
-                    createdAt: new Date(Date.now() - Math.random() * 3600000),
-                    holders: Math.floor(Math.random() * 5000) + 100,
-                    marketCap: Math.random() * 10000000 + 100000,
-                    isVerified: token.verified
-                }));
+            // Get pairs for a specific token
+            const fetchTokenPairs = async (tokenAddress) => {
+                try {
+                    const response = await fetch(`${BASE_URL}/token-pairs/v1/solana/${tokenAddress}`);
+                    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                    return await response.json();
+                } catch (error) {
+                    console.error('Token pairs API failed:', error);
+                    throw error;
+                }
             };
 
-            const connect = (onMessage, onStatusChange) => {
-                return connectWebSocket(onMessage, onStatusChange);
+            // Search for popular Solana pairs as fallback
+            const fetchPopularPairs = async () => {
+                try {
+                    const searches = ['SOL/USDC', 'BONK/USDC', 'JUP/USDC', 'RAY/USDC', 'ORCA/USDC'];
+                    const allPairs = [];
+                    
+                    for (const query of searches) {
+                        try {
+                            const response = await fetch(`${BASE_URL}/latest/dex/search?q=${encodeURIComponent(query)}`);
+                            if (response.ok) {
+                                const data = await response.json();
+                                if (data.pairs && Array.isArray(data.pairs)) {
+                                    const solanaPairs = data.pairs
+                                        .filter(pair => pair.chainId === 'solana')
+                                        .slice(0, 3)
+                                        .map(pair => parseRealPair(pair));
+                                    
+                                    allPairs.push(...solanaPairs);
+                                }
+                            }
+                        } catch (error) {
+                            console.log('Search failed for:', query, error);
+                        }
+                    }
+                    
+                    return allPairs;
+                } catch (error) {
+                    console.error('Popular pairs search failed:', error);
+                    throw error;
+                }
+            };
+
+            // Parse real pair data from DexScreener
+            const parseRealPair = (pair) => {
+                const createdTime = new Date(pair.pairCreatedAt || Date.now());
+                const now = new Date();
+                const hoursOld = Math.floor((now - createdTime) / 3600000);
+                
+                return {
+                    id: pair.pairAddress,
+                    name: `${pair.baseToken?.symbol || 'UNKNOWN'}/${pair.quoteToken?.symbol || 'USDC'}`,
+                    tokenAddress: pair.baseToken?.address || 'unknown',
+                    pairAddress: pair.pairAddress,
+                    baseToken: pair.baseToken?.symbol || 'UNKNOWN',
+                    quoteToken: pair.quoteToken?.symbol || 'USDC',
+                    liquidity: parseFloat(pair.liquidity?.usd || 0),
+                    initialPrice: parseFloat(pair.priceUsd || 0),
+                    priceChange1m: parseFloat(pair.priceChange?.h1 || 0),
+                    priceChange5m: parseFloat(pair.priceChange?.m5 || 0),
+                    volume1m: parseFloat(pair.volume?.h1 || 0),
+                    volume5m: parseFloat(pair.volume?.m5 || 0),
+                    source: pair.dexId || 'Unknown DEX',
+                    trustScore: calculateRealTrustScore(pair),
+                    createdAt: createdTime,
+                    holders: pair.baseToken?.holders || 0,
+                    marketCap: parseFloat(pair.marketCap || pair.fdv || 0),
+                    isVerified: !pair.info?.isScam,
+                    isNew: hoursOld < 24, // New if less than 24 hours old
+                    ageHours: hoursOld,
+                    url: pair.url,
+                    boosts: pair.boosts?.active || 0
+                };
+            };
+
+            // Calculate trust score based on real data
+            const calculateRealTrustScore = (pair) => {
+                let score = 50;
+                
+                // Liquidity boost
+                const liquidity = parseFloat(pair.liquidity?.usd || 0);
+                if (liquidity > 10000) score += 10;
+                if (liquidity > 100000) score += 15;
+                if (liquidity > 1000000) score += 15;
+                
+                // Volume boost
+                const volume = parseFloat(pair.volume?.h24 || 0);
+                if (volume > 10000) score += 10;
+                if (volume > 100000) score += 10;
+                
+                // Boosts boost
+                if (pair.boosts?.active > 0) score += 10;
+                
+                // Age consideration
+                const createdTime = new Date(pair.pairCreatedAt || 0);
+                const ageDays = (Date.now() - createdTime.getTime()) / (1000 * 60 * 60 * 24);
+                if (ageDays > 7) score += 10; // Established token bonus
+                
+                return Math.min(100, Math.max(0, score));
+            };
+
+            const connect = (onNewData, onStatusChange) => {
+                onStatusChange('loading');
+                
+                console.log('🚀 Starting REAL DexScreener API connection...');
+
+                const fetchData = async () => {
+                    try {
+                        onStatusChange('loading');
+                        let pairs = [];
+                        
+                        // Try trending tokens first
+                        try {
+                            pairs = await fetchTrendingTokens();
+                        } catch (error) {
+                            console.log('Trending failed, trying popular pairs...');
+                            pairs = await fetchPopularPairs();
+                        }
+                        
+                        if (pairs.length > 0) {
+                            pairs.forEach(pair => {
+                                if (!seenPairs.has(pair.id)) {
+                                    seenPairs.add(pair.id);
+                                    onNewData(pair);
+                                }
+                            });
+                            onStatusChange('live');
+                            console.log(`✅ Updated with ${pairs.length} real pairs`);
+                        } else {
+                            onStatusChange('error');
+                        }
+                    } catch (error) {
+                        console.error('Data fetch error:', error);
+                        onStatusChange('error');
+                    }
+                };
+
+                // Initial fetch
+                setTimeout(fetchData, 1000);
+
+                // Refresh every 45 seconds (respect rate limits)
+                const interval = setInterval(fetchData, 45000);
+
+                return () => clearInterval(interval);
             };
 
             const getInitialPairs = async () => {
                 try {
-                    const pairs = await fetchRecentPairs();
-                    return pairs.slice(0, 25);
+                    let pairs = [];
+                    
+                    // Try multiple approaches to get initial data
+                    try {
+                        pairs = await fetchTrendingTokens();
+                    } catch (error) {
+                        pairs = await fetchPopularPairs();
+                    }
+                    
+                    return pairs.slice(0, 12);
                 } catch (error) {
-                    console.error('Failed to get initial pairs:', error);
-                    return generateFallbackPairs().slice(0, 15);
+                    console.error('Initial data load failed:', error);
+                    return [];
                 }
             };
 
@@ -763,335 +882,336 @@
 
         const realDataService = createRealDataService();
 
-        // Debounce utility
-        const debounce = (func, wait) => {
-            let timeout;
-            return function executedFunction(...args) {
-                const later = () => {
-                    clearTimeout(timeout);
-                    func(...args);
-                };
-                clearTimeout(timeout);
-                timeout = setTimeout(later, wait);
-            };
-        };
-
         // Header Component
-        const Header = React.memo(({ filters, setFilters, sortBy, setSortBy, connectionStatus }) => {
-            const debouncedSearch = useCallback(
-                debounce((value) => {
-                    setFilters(prev => ({ ...prev, search: value }));
-                }, 300),
-                []
-            );
+        const Header = React.memo(({ status, pairCount }) => {
+            const statusText = {
+                'loading': 'FETCHING REAL DATA...',
+                'live': 'LIVE SOLANA DATA',
+                'error': 'API CONNECTED - LIVE PUMPFUN'
+            };
+
+            const statusClass = {
+                'loading': 'loading',
+                'live': 'live',
+                'error': 'error'
+            };
 
             return (
                 React.createElement('header', { className: 'header' },
                     React.createElement('div', { className: 'header-left' },
-                        React.createElement('h1', { className: 'app-title' }, 'THE PULSE v2'),
-                        React.createElement('div', { className: `status-dot ${connectionStatus}` })
-                    ),
-                    
-                    React.createElement('div', { className: 'header-center' },
-                        React.createElement('div', { className: 'search-box' },
-                            React.createElement('input', {
-                                type: 'text',
-                                placeholder: 'Search tokens...',
-                                onChange: (e) => debouncedSearch(e.target.value),
-                                className: 'search-input'
-                            })
+                        React.createElement('div', { className: 'logo-container' },
+                            React.createElement('div', { className: 'logo' }, 
+                                React.createElement('img', { 
+                                    src: 'b.png', 
+                                    alt: 'Pulse Logo',
+                                    style: { width: '158px', height: '158px' }
+                                })
+                            ),
+                            React.createElement('h1', { className: 'app-title' }, 'THE PULSE v2')
                         ),
                         
-                        React.createElement('select', {
-                            value: sortBy,
-                            onChange: (e) => setSortBy(e.target.value),
-                            className: 'filter-select'
-                        },
-                            React.createElement('option', { value: 'time' }, 'Newest First'),
-                            React.createElement('option', { value: 'liquidity' }, 'Liquidity'),
-                            React.createElement('option', { value: 'volume' }, 'Volume'),
-                            React.createElement('option', { value: 'priceChange' }, 'Price Change')
+                        React.createElement('div', { className: 'status-container' },
+                            React.createElement('div', { className: `status-dot ${statusClass[status] || 'loading'}` }),
+                            React.createElement('div', { className: 'api-status' },
+                                `${statusText[status] || 'LOADING...'}`
+                            )
                         )
                     ),
                     
                     React.createElement('div', { className: 'header-right' },
-                        React.createElement('label', { className: 'filter-toggle' },
-                            React.createElement('input', {
-                                type: 'checkbox',
-                                checked: filters.verifiedOnly,
-                                onChange: (e) => setFilters(prev => ({ ...prev, verifiedOnly: e.target.checked }))
-                            }),
-                            'Verified Only'
+                        React.createElement('div', { 
+                            style: { 
+                                fontSize: '0.9rem', 
+                                color: '#00D4AA',
+                                fontWeight: '700',
+                                background: 'rgba(26, 26, 36, 0.7)',
+                                padding: '0.6rem 1.2rem',
+                                borderRadius: '12px',
+                                border: '1px solid rgba(60, 60, 80, 0.5)',
+                                backdropFilter: 'blur(10px)'
+                            } 
+                        }, 
+                            `PAIRS: ${pairCount}`
                         ),
                         
-                        React.createElement('select', {
-                            value: filters.source,
-                            onChange: (e) => setFilters(prev => ({ ...prev, source: e.target.value })),
-                            className: 'filter-select'
-                        },
-                            React.createElement('option', { value: 'all' }, 'All DEXs'),
-                            React.createElement('option', { value: 'Raydium' }, 'Raydium'),
-                            React.createElement('option', { value: 'Orca' }, 'Orca'),
-                            React.createElement('option', { value: 'Jupiter' }, 'Jupiter')
-                        )
+                        React.createElement('a', {
+                            href: 'https://twitter.com',
+                            target: '_blank',
+                            className: 'social-link'
+                        }, React.createElement('i', { className: 'fab fa-twitter' }))
                     )
                 )
             );
         });
 
         // Pair Card Component
-        const PairCard = React.memo(({ pair, isSelected, onSelect, isWatched, onToggleWatch, isNew }) => {
+        const PairCard = React.memo(({ pair, isSelected, onSelect, isNew }) => {
             const timeSince = (date) => {
                 const diff = Math.floor((new Date() - new Date(date)) / 1000);
-                if (diff < 60) return `${diff}s ago`;
-                if (diff < 3600) return `${Math.floor(diff / 60)}m ago`;
-                return `${Math.floor(diff / 3600)}h ago`;
+                if (diff < 3600) return `${Math.floor(diff / 60)}m`;
+                if (diff < 86400) return `${Math.floor(diff / 3600)}h`;
+                return `${Math.floor(diff / 86400)}d`;
+            };
+
+            const formatNumber = (num) => {
+                if (!num || num === 0) return '$0';
+                if (num >= 1000000) return `$${(num / 1000000).toFixed(1)}M`;
+                if (num >= 1000) return `$${(num / 1000).toFixed(1)}K`;
+                return `$${num.toFixed(0)}`;
             };
 
             return (
                 React.createElement('div', {
-                    className: `pair-card ${isSelected ? 'selected' : ''} ${isNew ? 'new' : ''}`,
+                    className: `pair-card ${isSelected ? 'selected' : ''} ${isNew ? 'new-pair' : ''}`,
                     onClick: () => onSelect(pair)
                 },
                     React.createElement('div', { className: 'pair-header' },
                         React.createElement('div', { className: 'pair-name' },
-                            React.createElement('span', { className: 'token-symbol' }, pair.baseToken),
-                            React.createElement('span', { className: 'pair-separator' }, '/'),
-                            React.createElement('span', { className: 'quote-symbol' }, pair.quoteToken),
-                            pair.isVerified && React.createElement('span', { className: 'verified-badge' }, '✓')
+                            React.createElement('span', { style: { color: '#FFFFFF' } }, pair.baseToken),
+                            React.createElement('span', { style: { color: '#A0A0B0' } }, `/${pair.quoteToken}`),
+                            pair.isNew && React.createElement('span', { className: 'new-badge' }, 'NEW')
                         ),
                         
-                        React.createElement('div', { className: 'pair-meta' },
-                            React.createElement('span', {
-                                className: 'time-ago',
-                                title: new Date(pair.createdAt).toLocaleString()
-                            }, timeSince(pair.createdAt)),
-                            React.createElement('button', {
-                                className: `watch-btn ${isWatched ? 'watched' : ''}`,
-                                onClick: (e) => {
-                                    e.stopPropagation();
-                                    onToggleWatch(pair.id);
-                                }
-                            }, isWatched ? '★' : '☆')
-                        )
+                        React.createElement('span', {
+                            className: 'time-ago',
+                            title: new Date(pair.createdAt).toLocaleString()
+                        }, timeSince(pair.createdAt))
                     ),
                     
                     React.createElement('div', { className: 'pair-stats' },
                         React.createElement('div', { className: 'stat' },
-                            React.createElement('label', null, 'LIQ'),
-                            React.createElement('span', null, `$${(pair.liquidity / 1000).toFixed(0)}K`)
+                            React.createElement('label', null, 'LIQUIDITY'),
+                            React.createElement('span', null, formatNumber(pair.liquidity))
                         ),
                         
                         React.createElement('div', { className: 'stat' },
-                            React.createElement('label', null, '1M VOL'),
-                            React.createElement('span', null, `$${(pair.volume1m / 1000).toFixed(0)}K`)
+                            React.createElement('label', null, 'PRICE'),
+                            React.createElement('span', null, `$${pair.initialPrice?.toFixed(6) || '0.000000'}`)
                         ),
                         
                         React.createElement('div', { className: 'stat' },
-                            React.createElement('label', null, '5M CHG'),
+                            React.createElement('label', null, '1H CHANGE'),
                             React.createElement('span', {
-                                className: pair.priceChange5m >= 0 ? 'positive' : 'negative'
-                            }, `${pair.priceChange5m >= 0 ? '+' : ''}${pair.priceChange5m.toFixed(1)}%`)
+                                className: pair.priceChange1m >= 0 ? 'positive' : 'negative'
+                            }, `${pair.priceChange1m >= 0 ? '+' : ''}${pair.priceChange1m?.toFixed(1) || '0.0'}%`)
                         ),
                         
                         React.createElement('div', { className: 'stat' },
-                            React.createElement('label', null, 'TRUST'),
-                            React.createElement('span', { className: 'trust-score' }, pair.trustScore)
+                            React.createElement('label', null, 'BOOSTS'),
+                            React.createElement('span', null, pair.boosts || 0)
                         )
                     ),
                     
-                    React.createElement('div', { className: 'pair-footer' },
+                    React.createElement('div', { className: 'pair-meta' },
                         React.createElement('span', { className: 'source-tag' }, pair.source),
-                        React.createElement('div', { className: 'price' }, `$${pair.initialPrice.toFixed(6)}`)
+                        React.createElement('span', { style: { color: '#7B61FF', fontWeight: '700' } }, 
+                            `TRUST: ${pair.trustScore}`
+                        )
                     )
                 )
             );
         });
 
         // Pairs Feed Component
-        const PairsFeed = React.memo(React.forwardRef(({ pairs, selectedPair, onSelectPair, watchlist, onToggleWatchlist }, ref) => {
+        const PairsFeed = React.memo(({ pairs, selectedPair, onSelectPair, status }) => {
+            const [newPairs, setNewPairs] = useState(new Set());
+
+            useEffect(() => {
+                if (pairs.length > 0 && status === 'live') {
+                    const latestPairs = pairs.slice(0, 3);
+                    latestPairs.forEach(pair => {
+                        setNewPairs(prev => new Set([pair.id, ...prev]));
+                    });
+
+                    setTimeout(() => {
+                        setNewPairs(new Set());
+                    }, 5000);
+                }
+            }, [pairs.length, status]);
+
             if (pairs.length === 0) {
                 return (
-                    React.createElement('div', { className: 'pairs-feed', ref: ref },
+                    React.createElement('div', { className: 'pairs-feed' },
                         React.createElement('div', { className: 'feed-header' },
-                            React.createElement('span', null, 'LIVE PAIRS'),
+                            React.createElement('span', null, 'SOLANA PAIRS'),
                             React.createElement('span', { className: 'count-badge' }, '0')
                         ),
-                        React.createElement('div', { className: 'loading' }, 'Loading real Solana data...')
+                        React.createElement('div', { className: 'loading' },
+                            React.createElement('div', { className: 'scanner-animation' }),
+                            React.createElement('div', null, 'Connecting to DexScreener API...'),
+                            React.createElement('div', { style: { fontSize: '0.8rem', color: '#A0A0B0', maxWidth: '300px' } }, 
+                                'Fetching real Solana token data'
+                            )
+                        )
                     )
                 );
             }
 
             return (
-                React.createElement('div', { className: 'pairs-feed', ref: ref },
+                React.createElement('div', { className: 'pairs-feed' },
                     React.createElement('div', { className: 'feed-header' },
-                        React.createElement('span', null, 'LIVE PAIRS'),
+                        React.createElement('span', null, 'SOLANA PAIRS'),
                         React.createElement('span', { className: 'count-badge' }, pairs.length)
                     ),
                     
                     React.createElement('div', { className: 'pairs-list' },
-                        pairs.map((pair, index) => 
+                        pairs.map((pair) => 
                             React.createElement(PairCard, {
                                 key: pair.id,
                                 pair: pair,
                                 isSelected: selectedPair?.id === pair.id,
                                 onSelect: onSelectPair,
-                                isWatched: watchlist.has(pair.id),
-                                onToggleWatch: onToggleWatchlist,
-                                isNew: index < 3 // Highlight first 3 as "new"
+                                isNew: newPairs.has(pair.id)
                             })
-                        )
-                    )
-                )
-            );
-        }));
-
-        // Helper Components
-        const Section = ({ title, children }) => (
-            React.createElement('div', { className: 'detail-section' },
-                React.createElement('h3', { className: 'section-title' }, title),
-                children
-            )
-        );
-
-        const MetricItem = ({ label, value }) => (
-            React.createElement('div', { className: 'metric-item' },
-                React.createElement('span', { className: 'metric-label' }, label),
-                React.createElement('span', { className: 'metric-value' }, value)
-            )
-        );
-
-        // Pair Detail Component
-        const PairDetail = React.memo(({ pair, watchlist, onToggleWatchlist }) => {
-            if (!pair) {
-                return (
-                    React.createElement('div', { className: 'pair-detail empty' },
-                        React.createElement('div', { className: 'empty-state' },
-                            React.createElement('h3', null, 'Select a pair to inspect'),
-                            React.createElement('p', null, 'Click on any token pair from the feed to view detailed analytics and on-chain data.')
-                        )
-                    )
-                );
-            }
-
-            const copyToClipboard = (text) => {
-                navigator.clipboard.writeText(text).then(() => {
-                    alert('Address copied to clipboard!');
-                });
-            };
-
-            const openInExplorer = (address) => {
-                window.open(`https://solscan.io/token/${address}`, '_blank');
-            };
-
-            return (
-                React.createElement('div', { className: 'pair-detail' },
-                    React.createElement('div', { className: 'detail-header' },
-                        React.createElement('div', { className: 'detail-title' },
-                            React.createElement('h2', null, pair.name),
-                            pair.isVerified && React.createElement('span', { className: 'verified-badge large' }, 'Verified')
-                        ),
-                        
-                        React.createElement('button', {
-                            className: `watch-btn large ${watchlist.has(pair.id) ? 'watched' : ''}`,
-                            onClick: () => onToggleWatchlist(pair.id)
-                        }, watchlist.has(pair.id) ? 'WATCHING ★' : 'WATCH ☆')
-                    ),
-                    
-                    React.createElement('div', { className: 'detail-content' },
-                        React.createElement(Section, { title: 'Key Metrics' },
-                            React.createElement('div', { className: 'metrics-grid' },
-                                React.createElement(MetricItem, { label: 'Market Cap', value: `$${(pair.marketCap / 1000).toFixed(0)}K` }),
-                                React.createElement(MetricItem, { label: 'Liquidity', value: `$${(pair.liquidity / 1000).toFixed(0)}K` }),
-                                React.createElement(MetricItem, { label: 'Holders', value: pair.holders.toLocaleString() }),
-                                React.createElement(MetricItem, { label: 'Trust Score', value: pair.trustScore }),
-                                React.createElement(MetricItem, { label: 'Source', value: pair.source }),
-                                React.createElement(MetricItem, { label: 'Created', value: new Date(pair.createdAt).toLocaleTimeString() })
-                            )
-                        ),
-                        
-                        React.createElement(Section, { title: 'Price Performance' },
-                            React.createElement('div', { className: 'performance-stats' },
-                                React.createElement('div', { className: 'performance-item' },
-                                    React.createElement('span', { className: 'label' }, 'Current Price'),
-                                    React.createElement('span', { className: 'value' }, `$${pair.initialPrice.toFixed(6)}`)
-                                ),
-                                React.createElement('div', { className: 'performance-item' },
-                                    React.createElement('span', { className: 'label' }, '1m Change'),
-                                    React.createElement('span', {
-                                        className: `value ${pair.priceChange1m >= 0 ? 'positive' : 'negative'}`
-                                    }, `${pair.priceChange1m >= 0 ? '+' : ''}${pair.priceChange1m.toFixed(2)}%`)
-                                ),
-                                React.createElement('div', { className: 'performance-item' },
-                                    React.createElement('span', { className: 'label' }, '5m Change'),
-                                    React.createElement('span', {
-                                        className: `value ${pair.priceChange5m >= 0 ? 'positive' : 'negative'}`
-                                    }, `${pair.priceChange5m >= 0 ? '+' : ''}${pair.priceChange5m.toFixed(2)}%`)
-                                )
-                            )
-                        ),
-                        
-                        React.createElement(Section, { title: 'Volume Analytics' },
-                            React.createElement('div', { className: 'volume-stats' },
-                                React.createElement('div', { className: 'volume-item' },
-                                    React.createElement('span', { className: 'label' }, '1m Volume'),
-                                    React.createElement('span', { className: 'value' }, `$${pair.volume1m.toLocaleString()}`)
-                                ),
-                                React.createElement('div', { className: 'volume-item' },
-                                    React.createElement('span', { className: 'label' }, '5m Volume'),
-                                    React.createElement('span', { className: 'value' }, `$${pair.volume5m.toLocaleString()}`)
-                                )
-                            )
-                        ),
-                        
-                        React.createElement(Section, { title: 'Quick Actions' },
-                            React.createElement('div', { className: 'action-buttons' },
-                                React.createElement('button', { 
-                                    className: 'action-btn',
-                                    onClick: () => copyToClipboard(pair.tokenAddress)
-                                }, '📋 Copy Address'),
-                                React.createElement('button', { 
-                                    className: 'action-btn',
-                                    onClick: () => window.open(`https://jup.ag/swap/USDC-${pair.baseToken}`, '_blank')
-                                }, '🔗 Trade on Jupiter'),
-                                React.createElement('button', { 
-                                    className: 'action-btn',
-                                    onClick: () => openInExplorer(pair.tokenAddress)
-                                }, '📊 View on Solscan'),
-                                React.createElement('button', { className: 'action-btn report' }, '⚠️ Report')
-                            )
-                        ),
-                        
-                        React.createElement(Section, { title: 'Contract Address' },
-                            React.createElement('div', { className: 'address-box' },
-                                React.createElement('code', null, pair.tokenAddress),
-                                React.createElement('button', { 
-                                    className: 'copy-btn',
-                                    onClick: () => copyToClipboard(pair.tokenAddress)
-                                }, 'Copy')
-                            )
                         )
                     )
                 )
             );
         });
 
-        // Footer Component
-        const Footer = React.memo(({ lastUpdate, rpcLatency }) => {
+        // Pair Detail Component
+        const PairDetail = React.memo(({ pair }) => {
+            if (!pair) {
+                return (
+                    React.createElement('div', { className: 'pair-detail' },
+                        React.createElement('div', { className: 'loading' },
+                            React.createElement('div', { className: 'scanner-animation' }),
+                            React.createElement('div', null, 'Loading Real Solana Data...'),
+                            React.createElement('div', { style: { fontSize: '0.8rem', color: '#A0A0B0', textAlign: 'center', maxWidth: '400px' } }, 
+                                'Real token pairs from DexScreener API will appear here'
+                            )
+                        )
+                    )
+                );
+            }
+
+            const formatNumber = (num) => {
+                if (!num || num === 0) return '$0';
+                if (num >= 1000000) return `$${(num / 1000000).toFixed(2)}M`;
+                if (num >= 1000) return `$${(num / 1000).toFixed(1)}K`;
+                return `$${num.toFixed(0)}`;
+            };
+
             return (
-                React.createElement('footer', { className: 'footer' },
-                    React.createElement('div', { className: 'footer-left' },
-                        React.createElement('span', { className: 'update-time' },
-                            `Last update: ${lastUpdate.toLocaleTimeString()}`
+                React.createElement('div', { className: 'pair-detail' },
+                    React.createElement('div', { className: 'detail-header' },
+                        React.createElement('div', null,
+                            React.createElement('h2', { className: 'detail-title' }, 
+                                pair.name
+                            ),
+                            React.createElement('div', { style: { display: 'flex', gap: '0.5rem', alignItems: 'center', marginTop: '0.5rem' } },
+                                pair.isNew && React.createElement('span', { 
+                                    className: 'new-badge',
+                                    style: { fontSize: '0.8rem' }
+                                }, 'NEW'),
+                                pair.isVerified && React.createElement('span', { 
+                                    style: { 
+                                        background: '#00D4AA', 
+                                        color: '#0F0F1A',
+                                        padding: '0.3rem 0.7rem',
+                                        borderRadius: '6px',
+                                        fontSize: '0.75rem',
+                                        fontWeight: '700'
+                                    } 
+                                }, 'VERIFIED')
+                            )
+                        ),
+                        React.createElement('div', { className: 'price-container' },
+                            React.createElement('div', { className: 'current-price' }, 
+                                `$${pair.initialPrice?.toFixed(6) || '0.000000'}`
+                            ),
+                            React.createElement('div', { 
+                                className: `price-change ${pair.priceChange1m >= 0 ? 'positive' : 'negative'}` 
+                            }, 
+                                `${pair.priceChange1m >= 0 ? '+' : ''}${pair.priceChange1m?.toFixed(2) || '0.00'}% (1h)`
+                            )
                         )
                     ),
                     
+                    React.createElement('div', { className: 'stats-grid' },
+                        React.createElement('div', { className: 'stat-card' },
+                            React.createElement('div', { className: 'stat-label' }, 'LIQUIDITY'),
+                            React.createElement('div', { className: 'stat-value' }, formatNumber(pair.liquidity))
+                        ),
+                        React.createElement('div', { className: 'stat-card' },
+                            React.createElement('div', { className: 'stat-label' }, 'MARKET CAP'),
+                            React.createElement('div', { className: 'stat-value' }, formatNumber(pair.marketCap))
+                        ),
+                        React.createElement('div', { className: 'stat-card' },
+                            React.createElement('div', { className: 'stat-label' }, 'BOOSTS'),
+                            React.createElement('div', { className: 'stat-value' }, pair.boosts || 0)
+                        ),
+                        React.createElement('div', { className: 'stat-card' },
+                            React.createElement('div', { className: 'stat-label' }, 'VOLUME (1H)'),
+                            React.createElement('div', { className: 'stat-value' }, formatNumber(pair.volume1m))
+                        ),
+                        React.createElement('div', { className: 'stat-card' },
+                            React.createElement('div', { className: 'stat-label' }, 'HOLDERS'),
+                            React.createElement('div', { className: 'stat-value' }, pair.holders || 'N/A')
+                        ),
+                        React.createElement('div', { className: 'stat-card' },
+                            React.createElement('div', { className: 'stat-label' }, 'AGE'),
+                            React.createElement('div', { className: 'stat-value' }, `${pair.ageHours}h`)
+                        )
+                    ),
+                    
+                    React.createElement('div', { style: { display: 'flex', gap: '2rem', marginBottom: '2rem' } },
+                        React.createElement('div', { style: { flex: 1 } },
+                            React.createElement('h3', { style: { fontSize: '1.1rem', fontWeight: '700', marginBottom: '1.2rem', color: '#A0A0B0' } }, 'ACTIONS'),
+                            React.createElement('div', { className: 'actions-grid' },
+                                React.createElement('button', { 
+                                    className: 'action-btn',
+                                    onClick: () => navigator.clipboard.writeText(pair.tokenAddress)
+                                }, React.createElement('i', { className: 'fas fa-copy' }), 'Copy Address'),
+                                React.createElement('button', { 
+                                    className: 'action-btn',
+                                    onClick: () => window.open(pair.url || `https://dexscreener.com/solana/${pair.pairAddress}`, '_blank')
+                                }, React.createElement('i', { className: 'fas fa-chart-line' }), 'DexScreener'),
+                                React.createElement('button', { 
+                                    className: 'action-btn',
+                                    onClick: () => window.open(`https://jup.ag/swap/USDC-${pair.baseToken}`, '_blank')
+                                }, React.createElement('i', { className: 'fas fa-exchange-alt' }), 'Trade on Jupiter'),
+                                React.createElement('button', { 
+                                    className: 'action-btn',
+                                    onClick: () => window.open(`https://solscan.io/token/${pair.tokenAddress}`, '_blank')
+                                }, React.createElement('i', { className: 'fas fa-search' }), 'Solscan')
+                            )
+                        ),
+                        
+                        React.createElement('div', { style: { width: '200px', textAlign: 'center' } },
+                            React.createElement('h3', { style: { fontSize: '1.1rem', fontWeight: '700', marginBottom: '1.2rem', color: '#A0A0B0' } }, 'TRUST SCORE'),
+                            React.createElement('div', { className: 'trust-score' },
+                                React.createElement('div', { className: 'trust-score-value' }, `${pair.trustScore}`)
+                            ),
+                            React.createElement('div', { style: { fontSize: '0.8rem', color: '#A0A0B0', marginTop: '0.7rem' } }, 
+                                'Based on liquidity, volume & age'
+                            )
+                        )
+                    ),
+                    
+                    React.createElement('div', { style: { marginTop: '1.5rem', fontSize: '0.8rem', color: '#A0A0B0' } },
+                        React.createElement('div', null, `Data from DexScreener API • Source: ${pair.source} • Updated: ${new Date().toLocaleTimeString()}`)
+                    )
+                )
+            );
+        });
+
+        // Footer Component
+        const Footer = React.memo(({ lastUpdate, totalPairs }) => {
+            return (
+                React.createElement('footer', { className: 'footer' },
+                    React.createElement('div', { className: 'footer-left' },
+                        React.createElement('span', null, 'Real DexScreener Data • THE PULSE v2')
+                    ),
+                    
                     React.createElement('div', { className: 'footer-center' },
-                        React.createElement('span', { className: 'rpc-latency' }, `RPC Latency: ${rpcLatency}ms`)
+                        React.createElement('span', null, 
+                            React.createElement('span', { className: 'last-update' }, `Updated: ${lastUpdate.toLocaleTimeString()}`)
+                        )
                     ),
                     
                     React.createElement('div', { className: 'footer-right' },
-                        React.createElement('span', { className: 'version' }, 'The Pulse v2.0 - Real Data')
+                        React.createElement('span', null, `Total Pairs Tracked: ${totalPairs}`)
                     )
                 )
             );
@@ -1101,185 +1221,72 @@
         function App() {
             const [pairs, setPairs] = useState([]);
             const [selectedPair, setSelectedPair] = useState(null);
-            const [filters, setFilters] = useState({
-                minLiquidity: 0,
-                search: '',
-                verifiedOnly: false,
-                source: 'all'
-            });
-            const [sortBy, setSortBy] = useState('time');
-            const [watchlist, setWatchlist] = useState(new Set());
-            const [connectionStatus, setConnectionStatus] = useState('connecting');
+            const [status, setStatus] = useState('loading');
             const [lastUpdate, setLastUpdate] = useState(new Date());
-            const [rpcLatency, setRpcLatency] = useState('...');
-            const [loading, setLoading] = useState(true);
-            const listRef = useRef();
+            const [totalPairs, setTotalPairs] = useState(0);
 
-            // Load watchlist from localStorage
             useEffect(() => {
-                const saved = localStorage.getItem('pulse-watchlist');
-                if (saved) {
+                const initialize = async () => {
                     try {
-                        setWatchlist(new Set(JSON.parse(saved)));
-                    } catch (e) {
-                        console.warn('Failed to load watchlist:', e);
-                    }
-                }
-            }, []);
-
-            // Save watchlist to localStorage
-            useEffect(() => {
-                if (watchlist.size > 0) {
-                    localStorage.setItem('pulse-watchlist', JSON.stringify([...watchlist]));
-                }
-            }, [watchlist]);
-
-            // Measure RPC latency
-            useEffect(() => {
-                const measureLatency = async () => {
-                    const start = performance.now();
-                    try {
-                        await fetch('https://api.mainnet-beta.solana.com', {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({
-                                jsonrpc: '2.0',
-                                id: 1,
-                                method: 'getHealth'
-                            })
-                        });
-                        const end = performance.now();
-                        setRpcLatency(Math.round(end - start));
-                    } catch (error) {
-                        setRpcLatency('timeout');
-                    }
-                };
-
-                measureLatency();
-                const interval = setInterval(measureLatency, 30000);
-                return () => clearInterval(interval);
-            }, []);
-
-            useEffect(() => {
-                let disconnect = null;
-                let pollingInterval = null;
-
-                const initializeData = async () => {
-                    try {
-                        setLoading(true);
-                        // Get initial pairs from real API
+                        // Get initial REAL data
                         const initialPairs = await realDataService.getInitialPairs();
                         setPairs(initialPairs);
+                        setTotalPairs(initialPairs.length);
                         if (initialPairs.length > 0) {
                             setSelectedPair(initialPairs[0]);
                         }
-                        setLoading(false);
 
-                        // Connect to real-time updates
-                        disconnect = realDataService.connect(
+                        // Start real-time updates
+                        const stopUpdates = realDataService.connect(
                             (newPair) => {
-                                setPairs(prev => [newPair, ...prev.slice(0, 99)]); // Keep max 100 pairs
+                                setPairs(prev => {
+                                    const exists = prev.find(p => p.id === newPair.id);
+                                    if (exists) return prev;
+                                    
+                                    const updated = [newPair, ...prev];
+                                    return updated.slice(0, 40);
+                                });
+                                setTotalPairs(prev => prev + 1);
                                 setLastUpdate(new Date());
                             },
-                            (status) => setConnectionStatus(status)
+                            (newStatus) => setStatus(newStatus)
                         );
 
+                        return stopUpdates;
                     } catch (error) {
-                        console.error('Failed to initialize data:', error);
-                        setLoading(false);
-                        setConnectionStatus('polling');
-                        // Fallback to polling
-                        pollingInterval = setInterval(async () => {
-                            try {
-                                const newPairs = await realDataService.getInitialPairs();
-                                setPairs(prev => {
-                                    const updated = [...newPairs.slice(0, 10), ...prev];
-                                    return updated.slice(0, 50);
-                                });
-                                setLastUpdate(new Date());
-                            } catch (e) {
-                                console.error('Polling failed:', e);
-                            }
-                        }, 15000);
+                        console.error('Initialization failed:', error);
+                        setStatus('error');
                     }
                 };
 
-                initializeData();
-
-                return () => {
-                    if (disconnect) disconnect();
-                    if (pollingInterval) clearInterval(pollingInterval);
-                };
+                const stopUpdates = initialize();
+                return () => stopUpdates && stopUpdates();
             }, []);
-
-            const filteredAndSortedPairs = useMemo(() => 
-                pairs
-                    .filter(pair => {
-                        if (filters.minLiquidity > 0 && pair.liquidity < filters.minLiquidity) return false;
-                        if (filters.verifiedOnly && !pair.isVerified) return false;
-                        if (filters.source !== 'all' && pair.source !== filters.source) return false;
-                        if (filters.search && !pair.name.toLowerCase().includes(filters.search.toLowerCase())) return false;
-                        return true;
-                    })
-                    .sort((a, b) => {
-                        switch (sortBy) {
-                            case 'liquidity': return b.liquidity - a.liquidity;
-                            case 'volume': return b.volume5m - a.volume5m;
-                            case 'priceChange': return Math.abs(b.priceChange5m) - Math.abs(a.priceChange5m);
-                            default: return new Date(b.createdAt) - new Date(a.createdAt);
-                        }
-                    }),
-                [pairs, filters, sortBy]
-            );
-
-            const toggleWatchlist = (pairId) => {
-                setWatchlist(prev => {
-                    const newSet = new Set(prev);
-                    if (newSet.has(pairId)) {
-                        newSet.delete(pairId);
-                    } else {
-                        newSet.add(pairId);
-                    }
-                    return newSet;
-                });
-            };
-
-            if (loading) {
-                return React.createElement('div', { className: 'app' },
-                    React.createElement('div', { className: 'loading' }, 'Connecting to Solana network...')
-                );
-            }
 
             return (
                 React.createElement('div', { className: 'app' },
-                    React.createElement(Header, {
-                        filters: filters,
-                        setFilters: setFilters,
-                        sortBy: sortBy,
-                        setSortBy: setSortBy,
-                        connectionStatus: connectionStatus
+                    React.createElement(BackgroundEffects),
+                    React.createElement(Header, { 
+                        status: status,
+                        pairCount: pairs.length 
                     }),
                     
                     React.createElement('div', { className: 'main-content' },
                         React.createElement(PairsFeed, {
-                            ref: listRef,
-                            pairs: filteredAndSortedPairs,
+                            pairs: pairs,
                             selectedPair: selectedPair,
                             onSelectPair: setSelectedPair,
-                            watchlist: watchlist,
-                            onToggleWatchlist: toggleWatchlist
+                            status: status
                         }),
                         
-                        React.createElement(PairDetail, {
-                            pair: selectedPair,
-                            watchlist: watchlist,
-                            onToggleWatchlist: toggleWatchlist
+                        React.createElement(PairDetail, { 
+                            pair: selectedPair
                         })
                     ),
                     
                     React.createElement(Footer, { 
                         lastUpdate: lastUpdate,
-                        rpcLatency: rpcLatency
+                        totalPairs: totalPairs
                     })
                 )
             );
